@@ -15,13 +15,14 @@ evalEnv(){
     then 
         echo "$HOME/.env/ not found. Do you want to create it ? [yes-NO]"
         read $ask
-        if [ "$ask" = "yes" ]
+        if echo "$ask" = "yes" 
+
         then
             mkdir $HOME/.env/
             cd $HOME/.env/
             echo "do you want to create LINUX FHS in .env folder [yes-NO]"
             read $ask2
-            if [ "$ask2" = "yes" ]
+            if  echo "$ask2" = "yes" 
             then 
                 mkdir -p build bin etc lib opt sbin usr usr/bin usr/dict usr/doc usr/doc usr/etc usr/include usr/info usr/lib usr/local usr/man usr/man usr/sbin usr/share usr/spool usr/src var/catman var/lib var/local var/lock var/log var/run var/spool var/tmp
                 return 0
