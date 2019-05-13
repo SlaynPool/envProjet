@@ -11,7 +11,7 @@
 evalEnv(){
     cd $HOME/.env/
     RETVAL=$?
-    if $RETVAL -ne 0
+    if [ "$RETVAL" -ne "0" ]
     then 
         echo "$HOME/.env/ not found. Do you want to create it ? [yes-NO]"
         read $ask
@@ -48,7 +48,7 @@ evalEnv(){
 bashrcEval(){
     cat $HOME/.bashrc
     RETVAL=$?
-    if $RETVAL -eq 0
+    if [ "$RETVAL" -eq "0" ]
     then 
         cp $HOME/.bashrc $HOME/.bashrcOLD
         echo "export PATH='$HOME/.env/bin:$PATH'">$HOME/.bashrc 
@@ -70,7 +70,7 @@ bashrcEval(){
 bashrcReverse(){
     cat $HOME/.bashrcOLD
     RETVAL=$?
-    if $RETVAL -eq 0
+    if [ "$RETVAL" -eq "0" ]
     then
         rm $HOME/.bashrc
         mv $HOME/.bashrcOLD $HOME/.bashrc
@@ -84,7 +84,7 @@ bashrcReverse(){
 gitclone(){
     cd $HOME/.env/build/currentInstall/
     RETVAL=$?
-    if $RETVAL -eq 0
+    if [ "$RETVAL" -eq "0" ]
     then
         cd $HOME/.env/build
         mv $HOME/.env/build/currentInstall/ $HOME/.env/build/WaitInstall/
@@ -103,7 +103,7 @@ install(){
     #Si l'autoGen existe
     cat autogen.sh
     RETVAL=$?
-    if $RETVAL -eq 0
+    if [ "$RETVAL" -eq "0" ]
     then
        /bin/bash ./autogen.sh --prefix=$HOME/.env/
        /bin/bash configure --prefix=$HOME/.env/
@@ -112,7 +112,7 @@ install(){
     else
        cat configure
        RETVAL=$?
-       if $RETVAL -eq 0
+       if [ "$RETVAL" -eq "0" ]
        then  
            ./configure --prefix=$HOME/.env/
            make
