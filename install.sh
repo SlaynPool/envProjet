@@ -11,7 +11,7 @@
 evalEnv(){
     cd $HOME/.env/
     RETVAL=$?
-    if RETVAL -ne 0
+    if $RETVAL -ne 0
     then 
         echo "$HOME/.env/ not found. Do you want to create it ? [yes-NO]"
         read $ask
@@ -112,7 +112,7 @@ install(){
     else
        cat configure
        RETVAL=$?
-       if RETVAL -eq 0
+       if $RETVAL -eq 0
        then  
            ./configure --prefix=$HOME/.env/
            make
