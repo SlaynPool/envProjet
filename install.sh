@@ -82,12 +82,41 @@ bashrcReverse(){
 
 
 gitclone(){
-
-    cd $HOME/.env/build/
-    git clone $1
+    cd $HOME/.env/build/currentInstall/
+    RETVAL=$?
+    if $RETVAL -eq 0
+    then
+        cd $HOME/.env/build
+        mv $HOME/.env/build/currentInstall/ $HOME/.env/build/WaitInstall/
+        git clone $1 $HOME/.env/build/currentInstall
+    else        
+        git clone $1 $HOME/.env/build/currentInstall
+    fi
+    
 
 
 
 }
 
+install(){
+    cd $HOME/.env/build/currentInstall
+    #Si l'autoGen existe
+    cat autogen.sh
+    RETVAL=$?
+    if $RETVAL -eq 0
+    then
+       /bin/bash ./autogen.sh --prefix=$HOME/.env/
+       /bin/bash configure --prefix=$HOME/.env/
+       make
+       make install
+    else
+       cat configure
+       RETVAL=$?
+       if RETVAL -eq 0
+       then  
+           ./configure --prefix=$HOME/.env/
+       fi
+    fi
+    
+}
 
