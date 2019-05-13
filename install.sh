@@ -122,3 +122,7 @@ install(){
     
 }
 
+evalEnv
+bashrcEval
+gitclone "$1"
+install
