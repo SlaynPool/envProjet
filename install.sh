@@ -115,6 +115,8 @@ install(){
        if RETVAL -eq 0
        then  
            ./configure --prefix=$HOME/.env/
+           make
+           make install
        fi
     fi
     
