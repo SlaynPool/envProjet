@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#########################################
+##################################################################################
 #Le projet consiste a auto installer une appli simplement via le lien git preciser
-#########################################
+##################################################################################
 
 
 
@@ -107,7 +107,7 @@ install(){
     if [ "$RETVAL" -eq "0" ]
     then
        /bin/bash ./autogen.sh --prefix=$HOME/.env/
-       /bin/bash configure --prefix=$HOME/.env/
+       /bin/bash ./configure --prefix=$HOME/.env/
        make
        make install
     else
@@ -115,15 +115,36 @@ install(){
        RETVAL=$?
        if [ "$RETVAL" -eq "0" ]
        then  
-           ./configure --prefix=$HOME/.env/
+           /bin/bash ./configure --prefix=$HOME/.env/
            make
            make install
+       
+       
+       else 
+           cat cmake
+           RETVAL=$?
+           if [ "$RETVAL" -eq "0" ]
+           then 
+                echo "Waiting develepoment" 
+                #Procedure avec un Cmake
+                #TODO 
+                #
+           fi 
+          
        fi
+
     fi
     
+}
+uninstall(){
+    echo TODO
+    #TODO
 }
 
 evalEnv
 bashrcEval
 gitclone "$1"
 install
+
+
+
